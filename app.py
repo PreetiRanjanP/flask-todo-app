@@ -14,6 +14,7 @@ def create_app():
     db_password = quote_plus(os.getenv('DB_PASSWORD', ''))
 
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'fallback-secret-key')
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tmp.db'
     app.config['SQLALCHEMY_DATABASE_URI'] = (
         f"mysql+pymysql://{os.getenv('DB_USER')}:{db_password}"
         f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
